@@ -1,4 +1,4 @@
-<%= form_for(dose) do |f| %>
+<%= form_for([@cocktail,dose]) do |f| %>
   <% if dose.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(dose.errors.count, "error") %> prohibited this dose from being saved:</h2>
@@ -17,13 +17,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :cocktail_id %>
-    <%= f.text_field :cocktail_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :ingredient_id %>
-    <%= f.text_field :ingredient_id %>
+    <%= f.label :ingredient %>
+    <%= f.select :ingredient_id, Ingredient.all.collect { |p| [ p.name, p.id ] } %>
   </div>
 
   <div class="actions">
